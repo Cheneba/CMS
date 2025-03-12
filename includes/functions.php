@@ -71,3 +71,32 @@ function deletePostWithUserId($post_id, $user_id)
   }
 }
 function deleteAllPostsWithUserId() {}
+
+
+
+if (isset($_POST["submit-newmodal"])) {
+  $title = htmlspecialchars($_POST['title']);
+  $description = htmlspecialchars($_POST['description']);
+  $content = htmlspecialchars($_POST['content']);
+  $user_id = $user_id ?: 2;
+
+  if ($title && $description && $user_id) {
+    if (newPostWithUserId($user_id, $title, $description, $content)) {
+      header("Location: /CMS/public/posts.php");
+    }
+  }
+}
+
+
+if (isset($_POST["submit-editmodal"])) {
+  $title = htmlspecialchars($_POST['title']);
+  $description = htmlspecialchars($_POST['description']);
+  $content = htmlspecialchars($_POST['content']);
+  $user_id = $user_id ?: 2;
+
+  if ($title && $description && $user_id) {
+    if (newPostWithUserId($user_id, $title, $description, $content)) {
+      $msg = "Successful";
+    }
+  }
+}
