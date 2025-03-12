@@ -42,7 +42,17 @@ function getPost($id)
   return ["post" => $post, "author" => $author];
 }
 function editPostWithUserId() {}
-function newPostWithUserId() {}
+function newPostWithUserId($user_id, $title, $description, $content, $image = "No image")
+{
+  global $post_object;
+  global $connection;
+
+  if ($post_object->create($title, $image, $description, $content, $user_id, $connection)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 function deletePostWithUserId($post_id, $user_id)
 {
   global $post_object;
