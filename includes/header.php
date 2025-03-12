@@ -32,7 +32,8 @@
           <a href="/CMS/public/logout.php" class="btn btn-danger" style="margin-left: 10px">Logout</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="btn btn-success" style="margin-left: 10px">New Post</a>
+          <button class="btn btn-success" style="margin-left: 10px" data-bs-toggle="modal"
+            data-bs-target="#myModal1">New Post</button>
         </li>
       </ul>
     </div>
