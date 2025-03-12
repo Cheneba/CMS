@@ -17,9 +17,9 @@ class User
       return false;
     }
   }
-  public function create($name, $email, $conn)
+  public function create($name, $email, $password, $conn)
   {
-    $sql = "INSERT INTO `users` (`name`, `email`) VALUES ('" . $name . "', '" . $email . "')";
+    $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('" . $name . "', '" . $email . "', '" . $password . "')";
 
     if (mysqli_query($conn, $sql)) {
       return true;
@@ -30,6 +30,20 @@ class User
   public function getOne($id, $conn)
   {
     $sql = "SELECT * FROM users WHERE id=$id";
+
+    $result = mysqli_query($conn, $sql);
+
+    $rows = mysqli_fetch_all($result);
+    if ($rows[0]) {
+      return $rows;
+    } else {
+      return false;
+    }
+  }
+
+  public function verify($user_name, $password, $conn)
+  {
+    $sql = "SELECT * FROM users WHERE `name`='$user_name' AND `password`='$password'";
 
     $result = mysqli_query($conn, $sql);
 
