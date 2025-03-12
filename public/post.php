@@ -1,17 +1,15 @@
 <?php include "../includes/header.php" ?>
 <?php include "../includes/functions.php" ?>
-<?php
-
-$id = (int)base64_decode($_GET['d']) ?: 4;
+<?php $id = (int)base64_decode($_GET['d']) ?: 4;
 $data = getPost($id);
-
-
 if (isset($_POST['delete'])) {
-  $d = explode(',', base64_decode($_POST['delete']));
+  $d = explode(
+    ',',
+    base64_decode($_POST['delete'])
+  );
   var_dump(deletePostWithUserId(...$d));
   header("Location: /CMS/public/posts.php");
 }
-
 ?>
 
 
@@ -48,7 +46,8 @@ if (isset($_POST['delete'])) {
               <span> Author: <?php echo $data["author"] ?> </span>
             </div>
             <form method="post" action="dashboard.php" class="col-3">
-              <a href="#" class="btn btn-success">Edit</a>
+              <button class="btn btn-success" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#myModal2">Edit</button>
               <button href="#" class="btn btn-danger" name="delete"
                 value="<?php echo base64_encode($post[0] . "," . $post[5]) ?>">Delete</button>
             </form>
@@ -60,6 +59,7 @@ if (isset($_POST['delete'])) {
   </div>
 </div>
 
+<?php include "modal.php" ?>
 
 
 <?php include "../includes/footer.php" ?>
