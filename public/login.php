@@ -10,8 +10,8 @@
         <br />
         <!-- User input -->
         <div class="form-floating">
-          <input type="text" name="name" id="name" class="form-control" placeholder="Name or Email" />
-          <label for="name" class="form-label">Name or Email</label>
+          <input type="text" name="email" id="email" class="form-control" placeholder="Email" />
+          <label for="email" class="form-label">Email</label>
           <br />
         </div>
         <!-- Password input -->
