@@ -7,12 +7,29 @@ include "../classes/user.php";
 $user_object = new User();
 $post_object = new Post();
 
-// var_dump($user_object->getAll($connection));
-// echo "<br>";
-// echo "<br>";
-// var_dump($post_object->getAll($connection));
 
-function login() {}
+function loggable($user_name, $password)
+{
+  global $user_object;
+  global $connection;
+
+  if ($user_object->verify($user_name, $password, $connection)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function createUser($name, $email, $password)
+{
+  global $user_object;
+  global $connection;
+
+  if ($user_object->create($name, $email, $password, $connection)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 function logout() {}
 function getAllPosts()
 {
@@ -97,6 +114,53 @@ if (isset($_POST["submit-editmodal"])) {
   if ($title && $description && $user_id) {
     if (newPostWithUserId($user_id, $title, $description, $content)) {
       $msg = "Successful";
+    }
+  }
+}
+
+
+if (isset($_POST['submit-login'])) {
+  $name = htmlspecialchars($_POST["name"]);
+  $password = htmlspecialchars($_POST["password"]);
+  $r_me = htmlspecialchars($_POST["checkbox"]);
+
+  if ($name && $password) {
+    try {
+      if (loggable($name, $password)) {
+        session_start();
+
+        $_SESSION["name"] = $name;
+        $_SESSION["password"] = $password;
+        $_SESSION["r_me"] = $r_me;
+
+        header("Location: /CMS/public/dashboard.php");
+      }
+    } catch (Exception $e) {
+      $msg = "User does not exist";
+    }
+  }
+}
+
+
+if (isset($_POST['submit-register'])) {
+  $name = htmlspecialchars($_POST["name"]);
+  $password = htmlspecialchars($_POST["password"]);
+  $email = htmlspecialchars($_POST["email"]);
+
+  var_dump($name && $email && $password);
+  if ($name && $email && $password) {
+    try {
+      if (createUser($name, $email, $password)) {
+        session_start();
+
+        $_SESSION["name"] = $name;
+        $_SESSION["password"] = $password;
+        $_SESSION["email"] = $email;
+
+        header("Location: /CMS/public/dashboard.php");
+      }
+    } catch (Exception $e) {
+      $msg = "Validation Error";
     }
   }
 }
