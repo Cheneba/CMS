@@ -46,9 +46,10 @@ class Post
     }
   }
 
-  public function create($title, $image = null, $description, $content = null, $conn)
+  public function create($title, $image, $description, $content = "content", $author_id, $conn)
   {
-    $sql = "INSERT INTO `posts` (`title`, `image`, `description`, `content`) VALUES ('" . $title . "', '" . $image ?: "No image" . "', '" . $description . "', '" . $content ?: "No content" . "')";
+    $sql = "INSERT INTO `posts` (`title`, `image`, `description`, `content`, `author_id`) VALUES ('" . $title . "', ' " . $image . "', '" . $description . "', '" . $content . "', '" . $author_id . "')";
+
 
     if (mysqli_query($conn, $sql)) {
       return true;
