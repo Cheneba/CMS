@@ -8,12 +8,12 @@ $user_object = new User();
 $post_object = new Post();
 
 
-function loggable($user_name, $password)
+function loggable($user_name, $email)
 {
   global $user_object;
   global $connection;
 
-  if ($user_object->verify($user_name, $password, $connection)) {
+  if ($user_object->verify($user_name, $email, $connection)) {
     return true;
   } else {
     return false;

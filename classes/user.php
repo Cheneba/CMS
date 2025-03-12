@@ -41,9 +41,9 @@ class User
     }
   }
 
-  public function verify($user_name, $password, $conn)
+  public function verify($user_name, $email, $conn)
   {
-    $sql = "SELECT * FROM users WHERE `name`='$user_name' AND `password`='$password'";
+    $sql = "SELECT * FROM users WHERE `name`='$user_name' AND `email`='$email'";
 
     $result = mysqli_query($conn, $sql);
 
