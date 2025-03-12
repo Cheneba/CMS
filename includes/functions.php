@@ -120,16 +120,16 @@ if (isset($_POST["submit-editmodal"])) {
 
 
 if (isset($_POST['submit-login'])) {
-  $name = htmlspecialchars($_POST["name"]);
+  $email = htmlspecialchars($_POST["email"]);
   $password = htmlspecialchars($_POST["password"]);
   $r_me = htmlspecialchars($_POST["checkbox"]);
 
-  if ($name && $password) {
+  if ($email && $password) {
     try {
-      if (loggable($name, $password)) {
+      if (loggable($email, $password)) {
         session_start();
 
-        $_SESSION["name"] = $name;
+        $_SESSION["email"] = $email;
         $_SESSION["password"] = $password;
         $_SESSION["r_me"] = $r_me;
 
