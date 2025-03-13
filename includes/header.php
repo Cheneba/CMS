@@ -17,17 +17,25 @@
       <a href="/CMS/public/index.php" class="navbar-brand">Brand | User</a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="/CMS/public/dashboard.php" class="nav-link active" aria-current="page">Home</a>
+
+          <?php
+          if ($_SESSION['status'] === "logged in") {
+            echo '<a href="/CMS/public/dashboard.php" class="nav-link active" aria-current="page">Dashboard</a>';
+          } else {
+            echo '<a href="/CMS/public/index.php" class="nav-link active" aria-current="page">Home</a>';
+          }
+          ?>
+
         </li>
 
+        <?php if ($_SESSION['status'] === "logged in"): ?>
         <li class="nav-item">
           <a href="/CMS/public/posts.php" class="nav-link">Posts</a>
         </li>
+        <?php endif; ?>
 
-        <li class="nav-item">
-          <a href="/CMS/public/login.php" class="btn btn-primary">Login</a>
-        </li>
 
+        <?php if ($_SESSION['status'] === "logged in"): ?>
         <li class="nav-item">
           <a href="/CMS/public/logout.php" class="btn btn-danger" style="margin-left: 10px">Logout</a>
         </li>
@@ -35,6 +43,12 @@
           <button class="btn btn-success" style="margin-left: 10px" data-bs-toggle="modal"
             data-bs-target="#myModal1">New Post</button>
         </li>
+        <?php else: ?>
+        <li class="nav-item">
+          <a href="/CMS/public/login.php" class="btn btn-primary">Login</a>
+        </li>
+        <?php endif; ?>
+
       </ul>
     </div>
   </nav>

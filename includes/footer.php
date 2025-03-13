@@ -4,45 +4,72 @@
     <section class="mt-5">
       <!-- Grid row-->
       <div class="row text-center justify-content-center pt-5">
-        <!-- Grid column -->
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="/CMS/public/login.php" class="text-white">Login</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
+        <?php if ($_SESSION["status"] === "logged in"): ?>
 
-        <!-- Grid column -->
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="/CMS/public/register.php" class="text-white">Register</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="/CMS/public/logout.php" class="text-white">Logout</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/dashboard.php" class="text-white">Home</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="/CMS/public/dashboard.php" class="text-white">Home</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/posts.php" class="text-white">Posts</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
-            <a href="/CMS/public/post.php" class="text-white">View sample post</a>
-          </h6>
-        </div>
-        <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/logout.php" class="text-white">Logout</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+
+        <?php else: ?>
+
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/dashboard.php" class="text-white">Home</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/login.php" class="text-white">Login</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/register.php" class="text-white">Register</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="/CMS/public/post.php" class="text-white">View sample post</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+
+        <?php endif; ?>
+
+
       </div>
       <!-- Grid row-->
     </section>
