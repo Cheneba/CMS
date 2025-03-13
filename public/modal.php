@@ -6,7 +6,7 @@
         <button class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal"></button>
       </div>
       <div class="modal-body">
-        <form action="/CMS/public/posts.php" method="post">
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
           <label for="title">Title</label>
           <input type="text" name="title" id="title" class="form-control">
 
@@ -33,7 +33,7 @@
         <button class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal"></button>
       </div>
       <div class="modal-body">
-        <form action="/CMS/public/posts.php" method="post">
+        <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
           <label for="title">Title</label>
           <input type="text" name="title" id="title" class="form-control">
 

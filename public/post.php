@@ -28,14 +28,8 @@ if (isset($_POST['delete'])) {
         <p>
           <?php echo $data["post"][3]; ?>
         </p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, omnis eaque quis, culpa sed maiores
-        similique sit voluptatibus perferendis repudiandae repellat, beatae quam. Veritatis omnis ut ipsum dicta
-        delectus doloremque odit, itaque praesentium repellendus, odio reiciendis mollitia laboriosam saepe sunt magni
-        iure fuga nisi recusandae a laborum molestiae! Itaque, tempore!
         <h6 class="text-decoration-underline">Content</h6>
-        <p>
-          <?php  ?>
-        </p>
+
         <p>
           <?php echo $data["post"][4]; ?>
         </p>
