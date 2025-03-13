@@ -20,7 +20,22 @@ class Post
 
   public function getAllByUser($user_id, $conn)
   {
-    $sql = "SELECT * FROM posts WHERE `author_id`=$user_id";
+    $sql = "SELECT * FROM `posts` WHERE `author_id`=$user_id";
+
+    $result = mysqli_query($conn, $sql);
+
+    $rows = mysqli_fetch_all($result);
+    if ($rows[0]) {
+      return $rows;
+    } else {
+      return false;
+    }
+  }
+
+  public function getAllNotByUser($user_id, $conn)
+  {
+
+    $sql = "SELECT * FROM `posts` WHERE `author_id`!=$user_id";
 
     $result = mysqli_query($conn, $sql);
 

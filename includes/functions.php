@@ -53,11 +53,26 @@ function getAllPosts()
 function getPostsWithUserId($user_id)
 {
   global $post_object;
-  global $user_object;
   global $connection;
 
   $posts = $post_object->getAllByUser($user_id, $connection) ?: false;
   return $posts;
+}
+
+function getPostsWithoutUserId($user_id)
+{
+  global $post_object;
+  global $user_object;
+  global $connection;
+
+  $posts = $post_object->getAllNotByUser($user_id, $connection) ?: false;
+
+  foreach ($posts as $post) {
+    $author_id = $post[5];
+    $authors[] = $user_object->getOne($author_id, $connection)[0][1] ?: false;
+  }
+
+  return ["posts" => $posts, "authors" => $authors];
 }
 function getPost($id)
 {
