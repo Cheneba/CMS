@@ -34,6 +34,14 @@ function createUser($name, $email, $password)
     return false;
   }
 }
+function getUserName($id)
+{
+  global $user_object;
+  global $connection;
+
+  return $user_object->getOne($id, $connection)[0][1];
+}
+
 function logout() {}
 function getAllPosts()
 {
