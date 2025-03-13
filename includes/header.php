@@ -1,3 +1,16 @@
+<?php
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
+if ($_SESSION['status'] !== "logged in") {
+  unset($_SESSION);
+  session_destroy();
+  header("Location: index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,24 +42,24 @@
         </li>
 
         <?php if ($_SESSION['status'] === "logged in"): ?>
-        <li class="nav-item">
-          <a href="/CMS/public/posts.php" class="nav-link">Posts</a>
-        </li>
+          <li class="nav-item">
+            <a href="/CMS/public/posts.php" class="nav-link">Posts</a>
+          </li>
         <?php endif; ?>
 
 
         <?php if ($_SESSION['status'] === "logged in"): ?>
-        <li class="nav-item">
-          <a href="/CMS/public/logout.php" class="btn btn-danger" style="margin-left: 10px">Logout</a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-success" style="margin-left: 10px" data-bs-toggle="modal"
-            data-bs-target="#myModal1">New Post</button>
-        </li>
+          <li class="nav-item">
+            <a href="/CMS/public/logout.php" class="btn btn-danger" style="margin-left: 10px">Logout</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-success" style="margin-left: 10px" data-bs-toggle="modal"
+              data-bs-target="#myModal1">New Post</button>
+          </li>
         <?php else: ?>
-        <li class="nav-item">
-          <a href="/CMS/public/login.php" class="btn btn-primary">Login</a>
-        </li>
+          <li class="nav-item">
+            <a href="/CMS/public/login.php" class="btn btn-primary">Login</a>
+          </li>
         <?php endif; ?>
 
       </ul>
