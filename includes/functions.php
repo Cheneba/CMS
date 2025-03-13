@@ -50,7 +50,15 @@ function getAllPosts()
 
   return ["posts" => $posts, "authors" => $authors];
 }
-function getPostsWithUserId($user_id) {}
+function getPostsWithUserId($user_id)
+{
+  global $post_object;
+  global $user_object;
+  global $connection;
+
+  $posts = $post_object->getAllByUser($user_id, $connection) ?: false;
+  return $posts;
+}
 function getPost($id)
 {
   global $post_object;
@@ -99,11 +107,11 @@ if (isset($_POST["submit-newmodal"])) {
   $title = htmlspecialchars($_POST['title']);
   $description = htmlspecialchars($_POST['description']);
   $content = htmlspecialchars($_POST['content']);
-  $user_id = $user_id ?: 2;
+  $user_id = $_SESSION["user_id"] ?: 2;
 
   if ($title && $description && $user_id) {
     if (newPostWithUserId($user_id, $title, $description, $content)) {
-      header("Location: /CMS/public/posts.php");
+      $msg = "Successful";
     }
   }
 }
@@ -113,7 +121,7 @@ if (isset($_POST["submit-editmodal"])) {
   $title = htmlspecialchars($_POST['title']);
   $description = htmlspecialchars($_POST['description']);
   $content = htmlspecialchars($_POST['content']);
-  $user_id = $user_id ?: 2;
+  $user_id = $_SESSION["user_id"] ?: 2;
 
   if ($title && $description && $user_id) {
     if (newPostWithUserId($user_id, $title, $description, $content)) {
@@ -132,8 +140,6 @@ if (isset($_POST['submit-login'])) {
     try {
       if ($user_id = loggable($email, $password)) {
         session_start();
-        var_dump($user_id);
-        exit();
 
         $_SESSION["email"] = $email;
         $_SESSION["password"] = $password;
