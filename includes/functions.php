@@ -8,13 +8,13 @@ $user_object = new User();
 $post_object = new Post();
 
 
-function loggable($user_name, $email)
+function loggable($email, $password)
 {
   global $user_object;
   global $connection;
 
-  if ($user_object->verify($user_name, $email, $connection)) {
-    if ($user_id = $user_object->getUserId($user_name, $email, $connection)) {
+  if ($user_object->verify($email, $password, $connection)) {
+    if ($user_id = $user_object->getUserId($email, $connection)) {
       return $user_id;
     }
   } else {
@@ -184,7 +184,7 @@ if (isset($_POST['submit-register'])) {
   $password = htmlspecialchars($_POST["password"]);
   $email = htmlspecialchars($_POST["email"]);
 
-  var_dump($name && $email && $password);
+
   if ($name && $email && $password) {
     try {
       if ($user_id = createUser($name, $email, $password)) {

@@ -19,6 +19,7 @@ class User
   }
   public function create($name, $email, $password, $conn)
   {
+    $password = password_hash($password,  PASSWORD_BCRYPT);
     $sql = "INSERT INTO `users` (`name`, `email`, `password`) VALUES ('" . $name . "', '" . $email . "', '" . $password . "')";
 
     if (mysqli_query($conn, $sql)) {
@@ -42,9 +43,9 @@ class User
   }
 
 
-  public function getUserId($email, $password, $conn)
+  public function getUserId($email, $conn)
   {
-    $sql = "SELECT `users`.`id` FROM `users` WHERE `users`.`email`='$email' AND `users`.`password`='$password'";
+    $sql = "SELECT `users`.`id` FROM `users` WHERE `users`.`email`='$email'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -59,13 +60,15 @@ class User
 
   public function verify($email, $password, $conn)
   {
-    $sql = "SELECT * FROM users WHERE `email`='$email' AND `password`='$password'";
+    $sql = "SELECT `users`.`password` FROM `users` WHERE `users`.`email`='$email'";
 
     $result = mysqli_query($conn, $sql);
 
     $rows = mysqli_fetch_all($result);
-    if ($rows[0]) {
-      return $rows;
+    $p_word = $rows[0][0];
+
+    if (password_verify($password, $p_word)) {
+      return true;
     } else {
       return false;
     }
