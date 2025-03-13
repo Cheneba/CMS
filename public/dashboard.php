@@ -1,17 +1,17 @@
 <?php include "../includes/header.php" ?>
 <?php include "../includes/functions.php" ?>
 <?php
-$posts = getAllPosts();
+$user_name = getUserName($_SESSION["user_id"]);
 $user_posts = getPostsWithUserId($_SESSION["user_id"]);
 $other_posts = getPostsWithoutUserId($_SESSION["user_id"]);
-var_dump($_SERVER["PHP_SELF"]);
 ?>
 
 
 <div class="container">
   <div class="row">
     <div class="col-9">
-      <h1>Hello, User</h1>
+      <h1>Hello, <?php echo $user_name; ?>
+      </h1>
     </div>
     <div class="col-3">
       <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">

@@ -77,7 +77,10 @@
 
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-    &copy; 2020 Al rights reserved:<a href="/CMS/public/index.php">Brand | User</a>
+    &copy; 2020 Al rights reserved:<a
+      href="<?php if ($_SESSION["status"] === "logged in") echo '/CMS/public/dashboard.php';
+            else echo '/CMS/public/index.php' ?>">Brand
+      | <?php echo $user_name; ?></a>
   </div>
   <!-- Copyright -->
 </footer>

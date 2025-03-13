@@ -22,7 +22,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
   <!-- Header -->
   <nav class="navbar navbar-expand shadow pt-4 pb-4 mb-5">
     <div class="container">
-      <a href="/CMS/public/index.php" class="navbar-brand">Brand | User</a>
+      <a href="/CMS/public/index.php" class="navbar-brand">Brand</a>
       <ul class="navbar-nav">
         <li class="nav-item">
 
