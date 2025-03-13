@@ -14,7 +14,9 @@ function loggable($user_name, $email)
   global $connection;
 
   if ($user_object->verify($user_name, $email, $connection)) {
-    return true;
+    if ($user_id = $user_object->getUserId($user_name, $email, $connection)) {
+      return $user_id;
+    }
   } else {
     return false;
   }
@@ -25,7 +27,9 @@ function createUser($name, $email, $password)
   global $connection;
 
   if ($user_object->create($name, $email, $password, $connection)) {
-    return true;
+    if ($user_id = $user_object->getUserId($name, $email, $connection)) {
+      return $user_id;
+    }
   } else {
     return false;
   }
@@ -46,7 +50,7 @@ function getAllPosts()
 
   return ["posts" => $posts, "authors" => $authors];
 }
-function getPostsWithUserId() {}
+function getPostsWithUserId($user_id) {}
 function getPost($id)
 {
   global $post_object;
@@ -126,13 +130,16 @@ if (isset($_POST['submit-login'])) {
 
   if ($email && $password) {
     try {
-      if (loggable($email, $password)) {
+      if ($user_id = loggable($email, $password)) {
         session_start();
+        var_dump($user_id);
+        exit();
 
         $_SESSION["email"] = $email;
         $_SESSION["password"] = $password;
         $_SESSION["r_me"] = $r_me;
         $_SESSION["status"] = "logged in";
+        $_SESSION["user_id"] = $user_id;
 
         header("Location: /CMS/public/dashboard.php");
       }
@@ -151,12 +158,13 @@ if (isset($_POST['submit-register'])) {
   var_dump($name && $email && $password);
   if ($name && $email && $password) {
     try {
-      if (createUser($name, $email, $password)) {
+      if ($user_id = createUser($name, $email, $password)) {
         session_start();
 
         $_SESSION["name"] = $name;
         $_SESSION["password"] = $password;
         $_SESSION["email"] = $email;
+        $_SESSION["user_id"] = $user_id;
         $_SESSION["status"] = "logged in";
 
         header("Location: /CMS/public/dashboard.php");

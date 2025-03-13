@@ -41,6 +41,22 @@ class User
     }
   }
 
+
+  public function getUserId($email, $password, $conn)
+  {
+    $sql = "SELECT `users`.`id` FROM `users` WHERE `users`.`email`='$email' AND `users`.`password`='$password'";
+
+    $result = mysqli_query($conn, $sql);
+
+    $rows = mysqli_fetch_all($result);
+
+    if ($rows[0]) {
+      return (int)$rows[0][0];
+    } else {
+      return false;
+    }
+  }
+
   public function verify($email, $password, $conn)
   {
     $sql = "SELECT * FROM users WHERE `email`='$email' AND `password`='$password'";
