@@ -132,6 +132,7 @@ if (isset($_POST['submit-login'])) {
         $_SESSION["email"] = $email;
         $_SESSION["password"] = $password;
         $_SESSION["r_me"] = $r_me;
+        $_SESSION["status"] = "logged in";
 
         header("Location: /CMS/public/dashboard.php");
       }
@@ -156,6 +157,7 @@ if (isset($_POST['submit-register'])) {
         $_SESSION["name"] = $name;
         $_SESSION["password"] = $password;
         $_SESSION["email"] = $email;
+        $_SESSION["status"] = "logged in";
 
         header("Location: /CMS/public/dashboard.php");
       }
